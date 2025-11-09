@@ -45,7 +45,7 @@ export default function HeroSection() {
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap gap-8 pt-4">
+            {/* <div className="flex flex-wrap gap-8 pt-4">
               <div>
                 <div className="text-3xl font-bold">10K+</div>
                 <div className="text-base-200 text-sm">Properties</div>
@@ -58,7 +58,7 @@ export default function HeroSection() {
                 <div className="text-3xl font-bold">100+</div>
                 <div className="text-base-200 text-sm">Locations</div>
               </div>
-            </div>
+            </div> */}
           </div>
         
         </div>
