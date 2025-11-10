@@ -1,7 +1,9 @@
+/* eslint-disable no-useless-catch */
 import React, { useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../firebase/firebase.config'
+import axios from 'axios'
 
 const auth = getAuth(app)
 
@@ -19,9 +21,16 @@ const provider = new GoogleAuthProvider()
                 displayName: name,
                 photoURL
             })
+            const res = await axios.post('http://localhost:3000/users/',{
+                name,
+                email,
+                password,
+                photoURL
+            })
+            console.log(res)
             return userCredential
         } catch (error) {
-            console.log(error)
+            throw error
         }
     }
     console.log(user)
