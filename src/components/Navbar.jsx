@@ -1,9 +1,22 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user ,logout } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+   const handleLogout = () => {
+    logout();
+    toast.success("Logged out successfully!");
+    navigate("/auth/login");
+  };
+  
 
   // Detect scroll
   useEffect(() => {
@@ -20,7 +33,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-primary text-base-200 shadow-lg"
-          : "bg-transparent text-white backdrop-blur-md"
+          : "bg-primary text-white backdrop-blur-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -39,19 +52,20 @@ export default function Navbar() {
               { name: "My Properties", href: "/my-properties" },
               { name: "My Ratings", href: "/my-ratings" },
             ].map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className={`transition-colors duration-200 hover:text-secondary ${
                   isScrolled ? "text-base-200" : "text-white"
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
 
-            <a
-              href="/login"
+            {!user ? (
+               <Link
+              to="/auth/login"
               className={`px-6 py-2.5 rounded-lg font-medium transition-all duration-200 ${
                 isScrolled
                   ? "bg-base-200 text-primary hover:bg-white"
@@ -59,7 +73,21 @@ export default function Navbar() {
               }`}
             >
               Login
-            </a>
+            </Link>
+            ) : (
+              <button
+              onClick={handleLogout}
+              className={`px-6 py-2.5 rounded-lg font-medium transition-all duration-200 ${
+                isScrolled
+                  ? "bg-base-200 text-primary hover:bg-white"
+                  : "bg-secondary hover:bg-white hover:text-primary"
+              }`}
+            >
+              Logout
+            </button>
+            )}
+
+           
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,20 +133,20 @@ export default function Navbar() {
                 { name: "My Properties", href: "/my-properties" },
                 { name: "My Ratings", href: "/my-ratings" },
               ].map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className="hover:bg-secondary/20 px-4 py-3 rounded-lg transition-colors duration-200"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <a
-                href="/login"
+              <Link
+                to="/auth/login"
                 className="bg-secondary hover:bg-white hover:text-primary px-4 py-3 rounded-lg font-medium transition-colors duration-200 mt-2 text-center"
               >
                 Login
-              </a>
+              </Link>
             </div>
           </div>
         )}
