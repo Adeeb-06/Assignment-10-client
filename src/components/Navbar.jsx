@@ -48,8 +48,8 @@ export default function Navbar() {
             {[
               { name: "Home", href: "/" },
               { name: "All Properties", href: "/properties" },
-              { name: "Add Properties", href: "/add-property" },
-              { name: "My Properties", href: "/my-properties" },
+              { name: "Add Properties", href: "/properties/create" },
+              { name: "My Properties", href: "/properties/my-properties" },
               { name: "My Ratings", href: "/my-ratings" },
             ].map((link) => (
               <Link

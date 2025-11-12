@@ -4,6 +4,11 @@ import Home from "../pages/Home";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PropertiesLayout from "../layout/PropertiesLayout";
+import PropertiesPage from "../pages/Properties";
+import CreateProperty from "../pages/CreateProperty";
+import PrivateRoute from "../provider/PrivateRoute";
+import MyProperties from "../pages/MyProperties";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +36,24 @@ export const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Register/>
+            }
+        ]
+    },
+    {
+        path: "/properties",
+        element: <PropertiesLayout/>,
+        children: [
+            {
+                path: "",
+                element: <PropertiesPage/>
+            },
+            {
+                path: "create",
+                element: <PrivateRoute> <CreateProperty/> </PrivateRoute>
+            },
+            {
+                path: "my-properties",
+                element: <PrivateRoute> <MyProperties/> </PrivateRoute>
             }
         ]
     }
