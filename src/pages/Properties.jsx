@@ -27,6 +27,8 @@ export default function PropertiesPage() {
     return matchesSearch;
   });
 
+
+
   return (
     <div className="min-h-screen mt-7 bg-gradient-to-b from-base-200 to-white">
       {/* Header Section */}
@@ -83,7 +85,7 @@ export default function PropertiesPage() {
         {/* Properties Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProperties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
+            <PropertyCard key={property._id} property={property} />
           ))}
         </div>
 

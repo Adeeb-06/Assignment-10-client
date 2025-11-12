@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
       throw error;
     }
   };
-  console.log(user);
+//   console.log(user);
   const logout = async (auth) => {
     try {
       setLoading(true);

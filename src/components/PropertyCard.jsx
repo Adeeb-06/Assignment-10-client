@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function PropertyCard({ property }) {
   return (
@@ -48,9 +49,12 @@ function PropertyCard({ property }) {
               ${property.price.toLocaleString()}
             </p>
           </div>
+          <Link to={`/properties/${property._id}`}>
+          
           <button className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2.5 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
             View Details
           </button>
+          </Link>
         </div>
       </div>
     </div>

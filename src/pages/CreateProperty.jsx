@@ -12,7 +12,9 @@ export default function CreateProperty() {
 
     const onSubmit =  async(data) => {
         console.log(data);
-        const res = await axios.post('http://localhost:3000/create-property', data);
+        const res = await axios.post('http://localhost:3000/create-property', data,{
+            headers:{ Authorization: `Bearer ${user.accessToken}` }
+        });
         if(res.status === 201){
             toast.success("Property created successfully!");
             navigate("/properties/my-properties");
