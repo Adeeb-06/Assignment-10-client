@@ -1,69 +1,30 @@
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import PropertyCard from "../components/PropertyCard";
+import axios from "axios";
 
 export default function PropertiesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [properties, setProperties] = useState([]);
 
-  // Sample data
-  const properties = [
-    {
-      id: 1,
-      name: "Modern Villa",
-      category: "Villa",
-      description: "Luxurious 4-bedroom villa with pool, garden, and stunning city views. Perfect for families.",
-      location: "Beverly Hills, CA",
-      price: 2500000
-    },
-    {
-      id: 2,
-      name: "Downtown Apartment",
-      category: "Apartment",
-      description: "Stylish 2-bedroom apartment in the heart of downtown with modern amenities.",
-      location: "New York, NY",
-      price: 850000
-    },
-    {
-      id: 3,
-      name: "Beach House",
-      category: "House",
-      description: "Beautiful beachfront property with private beach access and ocean views.",
-      location: "Miami, FL",
-      price: 1800000
-    },
-    {
-      id: 4,
-      name: "Mountain Cabin",
-      category: "Cabin",
-      description: "Cozy mountain retreat with 3 bedrooms, fireplace, and breathtaking mountain views.",
-      location: "Aspen, CO",
-      price: 950000
-    },
-    {
-      id: 5,
-      name: "Luxury Penthouse",
-      category: "Penthouse",
-      description: "Exclusive penthouse with panoramic city views, rooftop terrace, and premium finishes.",
-      location: "Los Angeles, CA",
-      price: 3200000
-    },
-    {
-      id: 6,
-      name: "Suburban Home",
-      category: "House",
-      description: "Spacious family home with 5 bedrooms, large backyard, and excellent school district.",
-      location: "Austin, TX",
-      price: 650000
-    }
-  ];
+  const getProperties = async () => {
+    const res = await axios.get('http://localhost:3000/properties');
+    setProperties(res.data);
+    console.log(res);
+    return res.data;
+  }
 
-  const categories = ['All', 'Villa', 'Apartment', 'House', 'Cabin', 'Penthouse'];
+  useEffect(() => {
+    getProperties();
+  }, []);
+
+
 
   const filteredProperties = properties.filter(property => {
-    const matchesSearch = property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const matchesSearch = property.propertyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           property.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || property.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+   
+    return matchesSearch;
   });
 
   return (
@@ -112,25 +73,6 @@ export default function PropertiesPage() {
 
       {/* Filters and Properties */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-        {/* Category Filter */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
-                    : 'bg-white text-primary border border-base-300 hover:border-primary'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-gray-600">

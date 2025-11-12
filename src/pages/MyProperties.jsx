@@ -7,12 +7,17 @@ export default function MyProperties() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [properties, setProperties] = useState([]);
-  const {user} = useContext(AuthContext);
+  const {user } = useContext(AuthContext);
 
   const getProperties = async () => {
-    const res = await axios.get('http://localhost:3000/my-properties?userEmail='+user.email);
+ 
+    const res = await axios.get('http://localhost:3000/my-properties?userEmail='+user.email , {
+        headers: {
+            Authorization: `Bearer ${user.accessToken}`
+        }
+    });
     setProperties(res.data);
-    console.log(res);
+
     return res.data;
   }
 
@@ -20,16 +25,15 @@ export default function MyProperties() {
     getProperties();
   }, []);
 
-  console.log(properties)
 
-  const categories = ['All', 'Villa', 'Apartment', 'House', 'Cabin', 'Penthouse'];
 
-//   const filteredProperties = properties.filter(property => {
-//     const matchesSearch = property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//                           property.location.toLowerCase().includes(searchTerm.toLowerCase());
-//     const matchesCategory = selectedCategory === 'All' || property.category === selectedCategory;
-//     return matchesSearch && matchesCategory;
-//   });
+
+
+  const filteredProperties = properties.filter(property => {
+    const matchesSearch = property.propertyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          property.location.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesSearch ;
+  });
 
   return (
     <div className="min-h-screen mt-7 bg-gradient-to-b from-base-200 to-white">
@@ -64,24 +68,6 @@ export default function MyProperties() {
 
       {/* Filters and Properties */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-        {/* Category Filter */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg'
-                    : 'bg-white text-primary border border-base-300 hover:border-primary'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* Results Count */}
         <div className="mb-6">
