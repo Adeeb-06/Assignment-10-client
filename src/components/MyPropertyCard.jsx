@@ -64,7 +64,7 @@ function MyPropertyCard({ property, onDelete, properties }) {
             View
           </button>
         </Link>
-        <Link to={`/properties/${property._id}`}>
+        <Link to={`/properties/update/${property._id}`}>
           <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200">
             Update
           </button>
