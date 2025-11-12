@@ -24,7 +24,7 @@ function PropertyCard({ property }) {
       <div className="p-6">
         {/* Title */}
         <h3 className="text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors duration-300">
-          {property.name}
+          {property.propertyName}
         </h3>
 
         {/* Location */}

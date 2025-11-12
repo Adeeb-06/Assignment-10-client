@@ -6,6 +6,7 @@ import { router } from './routes/Route.jsx'
 import { RouterProvider } from 'react-router-dom'
 import AuthProvider from './provider/AuthProvider.jsx'
 import { ToastContainer } from 'react-toastify'
+import '@smastrom/react-rating/style.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

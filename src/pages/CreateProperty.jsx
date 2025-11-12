@@ -151,7 +151,7 @@ export default function CreateProperty() {
                   <input
                     type="text"
                     value={user?.displayName}
-                    {...register('user_name' , {required: {value: true, message: 'Name is required'}})}
+                    {...register('userName' , {required: {value: true, message: 'Name is required'}})}
                     readOnly
                     className="w-full px-4 py-2.5 rounded-lg border border-base-300 bg-gray-50 text-gray-600 cursor-not-allowed"
                   />

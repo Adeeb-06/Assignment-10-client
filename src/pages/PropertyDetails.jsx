@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
+import { Rating } from '@smastrom/react-rating';
 import axios from 'axios';
 
 export default function PropertyDetailsPage() {
   const {propertyId} = useParams();
+  const [rating, setRating] = useState(3);
     const {user} = useContext(AuthContext);
     const [property, setProperty] = useState({});
 
@@ -142,6 +144,7 @@ export default function PropertyDetailsPage() {
                   </button>
                 </div>
               </div>
+             
             </div>
           </div>
         </div>
