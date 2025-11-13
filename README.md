@@ -24,8 +24,4 @@ Built using **React**, **Express**, and **MongoDB**, it provides a seamless expe
 
 ---
 
-## 📦 Installation
 
-### Clone the Repository
-```bash
-git clone https://github.com/Adeeb-06/Assignment-10-server.git
