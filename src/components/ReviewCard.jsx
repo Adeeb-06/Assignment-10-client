@@ -58,7 +58,7 @@ export default function ReviewCard({ review }) {
                   <span className="font-semibold">{review.reviewrName}</span>
                 </div>
                 <span className="text-gray-400">•</span>
-                <span>{review.createdAt}</span>
+                <span>{ new Date(review.createdAt).toLocaleDateString()}</span>
               </div>
             </div>
 

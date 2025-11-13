@@ -13,6 +13,7 @@ import PropertyDetails from "../pages/PropertyDetails";
 import UpdateProperty from "../pages/UpdateProperty";
 import MyRatings from "../pages/MyRatings";
 import RatingsLayout from "../layout/RatingsLayout";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
@@ -78,5 +79,9 @@ export const router = createBrowserRouter([
                 element:  <PrivateRoute> <MyRatings/> </PrivateRoute>
             }
         ]
+    },
+    {
+        path: "*",
+        element: <ErrorPage/>
     }
 ])

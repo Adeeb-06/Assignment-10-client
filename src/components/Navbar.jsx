@@ -35,7 +35,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="text-2xl font-bold tracking-tight">PropertyHub</div>
+          <Link to="/" className="text-2xl font-bold tracking-tight">PropertyHub</Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-8">

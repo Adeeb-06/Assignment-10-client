@@ -9,7 +9,7 @@ const Review = ({userEmail , propertyId ,imgURL}) => {
        const [rating, setRating] = useState(3);
        const { user } = useContext(AuthContext);
 
-       const { register , handleSubmit } = useForm();
+       const { register , handleSubmit, reset } = useForm();
 
        const onsubmit = async (data) => {
         const fullData = {...data, rating , userEmail , propertyId , reviewrName: user.displayName, propertyIMGURL: imgURL}
@@ -17,6 +17,7 @@ const Review = ({userEmail , propertyId ,imgURL}) => {
 
         if(res.status === 201) {
             toast.success('Review submitted successfully!')
+            reset()
         } else{
             toast.error('Something went wrong!')
         }
