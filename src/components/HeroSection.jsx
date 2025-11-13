@@ -9,7 +9,7 @@ export default function HeroSection() {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative max-w-12xl mx-auto px-6 lg:px-8 py-24 lg:py-28">
+      <div className="relative max-w-12xl mx-auto px-6 lg:px-8 py-24 lg:py-34">
         <div className="flex justify-center items-center">
           {/* Left Content */}
           <div className="space-y-8 w-full mx-auto flex justify-center items-center flex-col">
@@ -31,7 +31,7 @@ export default function HeroSection() {
             </p>
 
             {/* Search Bar */}
-            <div className="bg-white rounded-2xl p-2 shadow-2xl w-4xl">
+            <div className="bg-white rounded-2xl p-2 shadow-2xl md:w-4xl w-full">
               <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="text"
