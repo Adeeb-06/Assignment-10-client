@@ -20,7 +20,7 @@ Built using **React**, **Express**, and **MongoDB**, it provides a seamless expe
 
 **Frontend:** React, Tailwind CSS, Axios, Swiper.js  
 **Backend:** Node.js, Express.js, MongoDB  
-**Tools:** Git, Vercel (Frontend Deployment), Render (Backend Deployment)
+**Tools:** Git, Firebase (Frontend Deployment), Vercel (Backend Deployment)
 
 ---
 
