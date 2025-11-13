@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 
 export default function MyProperties() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [properties, setProperties] = useState([]);
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);

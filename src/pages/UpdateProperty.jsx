@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -7,7 +7,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateProperty() {
   const { propertyId } = useParams();
-  const [property, setProperty] = useState({});
   const { register, handleSubmit, reset } = useForm({});
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ export default function UpdateProperty() {
       }
     );
     console.log(res);
-    setProperty(res.data);
     reset({
       propertyName: res.data.propertyName,
       description: res.data.description,

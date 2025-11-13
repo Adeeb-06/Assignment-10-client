@@ -70,7 +70,7 @@ export default function Navbar() {
                   Login
                 </Link>
                 <Link
-                  to="/auth/signup"
+                  to="/auth/register"
                   className={`px-5 py-2.5 rounded-lg font-medium border transition-all duration-200 ${
                     isScrolled
                       ? "border-base-200 text-base-200 hover:bg-base-200 hover:text-primary"

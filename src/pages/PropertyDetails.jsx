@@ -165,12 +165,21 @@ export default function PropertyDetailsPage() {
                 <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
                   {property?.userEmail?.charAt(0).toUpperCase()}
                 </div>
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 flex-col gap-4">
+
+                <div className="flex-1 ">
+                  <p className="text-gray-800 font-bold text-xl break-all">
+                    {property.userName}
+                    {/* Adeeb */}
+                  </p>
+                </div>
+                <div className="flex-2 min-w-0">
                   <p className="text-gray-600 text-sm break-all">
                     {property.userEmail}
                   </p>
                 </div>
-                <button className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 flex-shrink-0">
+                </div>
+                <button className="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 shrink-0">
                   <svg
                     className="w-5 h-5"
                     fill="none"

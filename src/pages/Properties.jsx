@@ -6,7 +6,6 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function PropertiesPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
