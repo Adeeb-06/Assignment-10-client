@@ -29,6 +29,7 @@ export default function MyProperties() {
       
     } catch (error) {
       toast.error(error.message || "Something went wrong!");
+      console.log(error)
     } finally {
       setLoading(false);
     }
