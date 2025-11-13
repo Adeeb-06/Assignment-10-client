@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import { Rating } from "@smastrom/react-rating";
 import { RatIcon } from "lucide-react";
 import Review from "../components/Review";
+import api from "../api";
 
 export default function PropertyDetailsPage() {
   const { propertyId } = useParams();
@@ -15,8 +16,8 @@ export default function PropertyDetailsPage() {
 
 
   const getProperty = async () => {
-    const res = await axios.get(
-      "http://localhost:3000/properties/" + propertyId,
+    const res = await api.get(
+      "/properties/" + propertyId,
       {
         headers: { Authorization: `Bearer ${user.accessToken}` },
       }

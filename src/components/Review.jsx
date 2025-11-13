@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from '../api';
 
 const Review = ({userEmail , propertyId ,imgURL}) => {
        const [rating, setRating] = useState(3);
@@ -13,7 +14,7 @@ const Review = ({userEmail , propertyId ,imgURL}) => {
 
        const onsubmit = async (data) => {
         const fullData = {...data, rating , userEmail , propertyId , reviewrName: user.displayName, propertyIMGURL: imgURL}
-        const res = await axios.post('http://localhost:3000/review', fullData, { headers: { Authorization: `Bearer ${user.accessToken}` } });
+        const res = await api.post('/review', fullData, { headers: { Authorization: `Bearer ${user.accessToken}` } });
 
         if(res.status === 201) {
             toast.success('Review submitted successfully!')

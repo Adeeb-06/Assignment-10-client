@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import ReviewCard from "../components/ReviewCard";
+import api from "../api";
 
 const MyRatings = () => {
   const { user } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const MyRatings = () => {
 
   const getReviews = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/reviews", {
+      const res = await api.get("/reviews", {
         headers: { Authorization: `Bearer ${user.accessToken}` },
       });
       if (res.status === 201) {

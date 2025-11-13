@@ -2,13 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import PropertyCard from "./PropertyCard";
+import api from "../api";
 
 const FeaturedProperties = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const getProperties = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/featured-properties");
+      const res = await api.get(`/featured-properties`);
       setProperties(res.data);
       console.log(res);
       return res.data;

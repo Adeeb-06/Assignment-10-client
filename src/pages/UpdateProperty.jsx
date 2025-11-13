@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
+import api from "../api";
 
 export default function UpdateProperty() {
   const { propertyId } = useParams();
@@ -12,8 +13,8 @@ export default function UpdateProperty() {
   const navigate = useNavigate();
 
   const getProperty = async () => {
-    const res = await axios.get(
-      "http://localhost:3000/properties/" + propertyId,
+    const res = await api.get(
+      "/properties/" + propertyId,
       {
         headers: { Authorization: `Bearer ${user.accessToken}` },
       }
@@ -34,8 +35,8 @@ export default function UpdateProperty() {
 
   const onSubmit = async (data) => {
     console.log(data);
-    const res = await axios.put(
-      `http://localhost:3000/properties/update/${propertyId}`,
+    const res = await api.put(
+      `/properties/update/${propertyId}`,
       data,
       {
         headers: { Authorization: `Bearer ${user.accessToken}` },

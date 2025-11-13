@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import Modal from "./Modal"; 
+import api from "../api";
 
 function MyPropertyCard({ property, onDelete,  }) {
   const { user } = useContext(AuthContext);
@@ -11,8 +12,8 @@ function MyPropertyCard({ property, onDelete,  }) {
 
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(
-        `http://localhost:3000/properties/${property._id}?userEmail=${user.email}`,
+      const res = await api.delete(
+        `/properties/${property._id}?userEmail=${user.email}`,
         { headers: { Authorization: `Bearer ${user.accessToken}` } }
       );
 

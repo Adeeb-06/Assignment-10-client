@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import axios from "axios";
+import api from "../api";
 
 const auth = getAuth(app);
 
@@ -34,7 +35,7 @@ const AuthProvider = ({ children }) => {
         displayName: name,
         photoURL,
       });
-      const res = await axios.post("http://localhost:3000/users/", {
+      const res = await api.post("/users/", {
         name,
         email,
         password,
@@ -76,13 +77,13 @@ const AuthProvider = ({ children }) => {
       console.log("Sending headers:", {
         Authorization: `Bearer ${token}`,
       });
-      const existingUser = await axios.get(
-        `http://localhost:3000/users/${res.user.email}`,
+      const existingUser = await api.get(
+        `/users/${res.user.email}`,
         { headers: { "Content-Type": "application/json" , "Authorization": `Bearer ${token}` } }
       );
       if (!existingUser.data) {
-        const user = await axios.post(
-          "http://localhost:3000/users/",
+        const user = await api.post(
+          "/users/",
           {
             name: res.user.displayName,
             email: res.user.email,

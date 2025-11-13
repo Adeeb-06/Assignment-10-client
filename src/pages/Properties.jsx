@@ -3,6 +3,7 @@ import PropertyCard from "../components/PropertyCard";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
+import api from "../api";
 
 export default function PropertiesPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,7 +14,7 @@ export default function PropertiesPage() {
   const getProperties = async () => {
 
     try {
-      const res = await axios.get('http://localhost:3000/properties');
+      const res = await api.get('/properties');
       setProperties(res.data);
       console.log(res);
       return res.data;

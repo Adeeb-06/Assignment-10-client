@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import api from '../api';
 
 export default function CreateProperty() {
     const {register, handleSubmit} = useForm();
@@ -12,7 +13,7 @@ export default function CreateProperty() {
 
     const onSubmit =  async(data) => {
         console.log(data);
-        const res = await axios.post('http://localhost:3000/create-property', data,{
+        const res = await api.post('/create-property', data,{
             headers:{ Authorization: `Bearer ${user.accessToken}` }
         });
         if(res.status === 201){

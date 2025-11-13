@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import MyPropertyCard from "../components/MyPropertyCard";
 import { toast } from "react-toastify";
+import api from "../api";
 
 export default function MyProperties() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,8 +15,8 @@ export default function MyProperties() {
   const getProperties = async () => {
 
     try {
-      const res = await axios.get(
-        "http://localhost:3000/my-properties?userEmail=" + user.email,
+      const res = await api.get(
+        "/my-properties?userEmail=" + user.email,
         {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
