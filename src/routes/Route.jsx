@@ -11,6 +11,8 @@ import PrivateRoute from "../provider/PrivateRoute";
 import MyProperties from "../pages/MyProperties";
 import PropertyDetails from "../pages/PropertyDetails";
 import UpdateProperty from "../pages/UpdateProperty";
+import MyRatings from "../pages/MyRatings";
+import RatingsLayout from "../layout/RatingsLayout";
 
 export const router = createBrowserRouter([
     {
@@ -64,6 +66,16 @@ export const router = createBrowserRouter([
             {
                 path: "update/:propertyId/",
                 element: <PrivateRoute> <UpdateProperty/> </PrivateRoute>
+            }
+        ]
+    },
+    {
+        path:"/my-ratings",
+        element: <RatingsLayout/>,
+        children: [
+            {
+                path: "",
+                element:  <PrivateRoute> <MyRatings/> </PrivateRoute>
             }
         ]
     }

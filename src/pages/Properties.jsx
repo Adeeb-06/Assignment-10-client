@@ -1,22 +1,36 @@
-import React,{ useEffect, useState } from "react";
+import React,{ useContext, useEffect, useState } from "react";
 import PropertyCard from "../components/PropertyCard";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { AuthContext } from "../context/AuthContext";
 
 export default function PropertiesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);
 
   const getProperties = async () => {
-    const res = await axios.get('http://localhost:3000/properties');
-    setProperties(res.data);
-    console.log(res);
-    return res.data;
+
+    try {
+      const res = await axios.get('http://localhost:3000/properties');
+      setProperties(res.data);
+      console.log(res);
+      return res.data;
+    } catch (error) {
+      toast.error(error.message || "Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   }
 
-  useEffect(() => {
+useEffect(() => {
+  if (user) {
     getProperties();
-  }, []);
+  } 
+}, [user]);
+
 
 
 
@@ -26,6 +40,15 @@ export default function PropertiesPage() {
    
     return matchesSearch;
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-base-200">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
+
 
 
 

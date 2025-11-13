@@ -190,7 +190,7 @@ export default function PropertyDetailsPage() {
             </div>
 
             {/* Review Section */}
-            <Review userEmail={user.email} propertyId={property._id}/>
+            <Review userEmail={user.email} propertyId={property._id} imgURL={property.imgURL}/>
           
           </div>
         </div>

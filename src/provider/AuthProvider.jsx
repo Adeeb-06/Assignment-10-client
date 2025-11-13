@@ -48,9 +48,8 @@ const AuthProvider = ({ children }) => {
     }
   };
 //   console.log(user);
-  const logout = async (auth) => {
+  const logout = async () => {
     try {
-      setLoading(true);
       setUser(null);
       return signOut(auth);
     } catch (error) {

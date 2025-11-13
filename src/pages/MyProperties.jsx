@@ -3,29 +3,42 @@ import PropertyCard from "../components/PropertyCard";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import MyPropertyCard from "../components/MyPropertyCard";
+import { toast } from "react-toastify";
 
 export default function MyProperties() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [properties, setProperties] = useState([]);
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
 
   const getProperties = async () => {
-    const res = await axios.get(
-      "http://localhost:3000/my-properties?userEmail=" + user.email,
-      {
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`,
-        },
-      }
-    );
-    setProperties(res.data);
 
-    return res.data;
+    try {
+      const res = await axios.get(
+        "http://localhost:3000/my-properties?userEmail=" + user.email,
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      );
+      setProperties(res.data);
+  
+      return res.data;
+      
+    } catch (error) {
+      toast.error(error.message || "Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    getProperties();
+    if (user) {
+      getProperties();
+    }
+
   }, []);
 
   const handleDelete = (id) => {
@@ -38,6 +51,15 @@ export default function MyProperties() {
       property.location.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesSearch;
   });
+
+    if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-base-200">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
+
 
   return (
     <div className="min-h-screen mt-7 bg-gradient-to-b from-base-200 to-white">
