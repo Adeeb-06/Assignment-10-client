@@ -5,15 +5,17 @@ import WhyChooseUs from '../components/WhyChooseUs'
 import FeaturedProperties from '../components/FeaturedProperties'
 import Contact from '../components/Contact'
 import AboutUs from '../components/AboutUs'
+import Slider from '../components/Slider'
 
 const Home = () => {
   return (
     <div>
         <HeroSection/>
         <Stats/>
-        <WhyChooseUs/>
         <AboutUs/>
         <FeaturedProperties/>
+        <WhyChooseUs/>
+        <Slider/>
         <Contact/>
     </div>
   )
